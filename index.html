@@ -14,9 +14,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .lang-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: var(--onyx);
+      border: 1px solid var(--jet);
+      padding: 5px 12px;
+      border-radius: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--light-gray);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      transition: 0.3s;
+    }
+    .lang-btn:hover {
+      color: var(--orange-yellow-crayola);
+    }
+    .lang-btn.active {
+      color: var(--orange-yellow-crayola);
+      cursor: default;
+    }
+    .lang-divider {
+      color: var(--jet);
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
+
+  <div class="lang-switcher">
+    <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+    <span class="lang-divider">|</span>
+    <button class="lang-btn active" id="btn-ua" onclick="changeLang('ua')">UA</button>
+  </div>
 
   <main>
 
@@ -31,11 +76,11 @@
         <div class="info-content">
           <h1 class="name" title="Ярослав">Ярослав</h1>
 
-          <p class="title">Веб-розробник</p>
+          <p class="title" data-i18n="role">Веб-розробник</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
-          <span>Показати контакти</span>
+          <span data-i18n="show_contacts">Показати контакти</span>
 
           <ion-icon name="chevron-down"></ion-icon>
         </button>
@@ -83,9 +128,9 @@
             </div>
 
             <div class="contact-info">
-              <p class="contact-title">Дата народження</p>
+              <p class="contact-title" data-i18n="dob_label">Дата народження</p>
 
-              <time datetime="2006-02-10">21 грудня 2006</time>
+              <time datetime="2006-12-21" data-i18n="dob_val">21 грудня 2006</time>
             </div>
 
           </li>
@@ -97,9 +142,9 @@
             </div>
 
             <div class="contact-info">
-              <p class="contact-title">Локація</p>
+              <p class="contact-title" data-i18n="loc_label">Локація</p>
 
-              <address>Торонто, Онтаріо, Канада</address>
+              <address data-i18n="loc_val">Торонто, Онтаріо, Канада</address>
             </div>
 
           </li>
@@ -145,19 +190,19 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>Про мене</button>
+            <button class="navbar-link active" data-nav-link data-i18n="nav_about">Про мене</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Резюме</button>
+            <button class="navbar-link" data-nav-link data-i18n="nav_resume">Резюме</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Портфоліо</button>
+            <button class="navbar-link" data-nav-link data-i18n="nav_portfolio">Портфоліо</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Контакти</button>
+            <button class="navbar-link" data-nav-link data-i18n="nav_contact">Контакти</button>
           </li>
 
         </ul>
@@ -168,19 +213,19 @@
 
 
 
-      <article class="about  active" data-page="про мене">
+      <article class="about active" data-page="про мене">
 
         <header>
-          <h2 class="h2 article-title">Про мене</h2>
+          <h2 class="h2 article-title" data-i18n="about_title">Про мене</h2>
         </header>
 
         <section class="about-text">
-          <p>
+          <p data-i18n="about_p1">
             Я Backend-розробник та спеціаліст з автоматизації, що базується в Торонто, Канада. 
             Спеціалізуюся на створенні надійної backend-архітектури, написанні скриптів на Python та розробці складних інструментів автоматизації.
           </p>
 
-          <p>
+          <p data-i18n="about_p2">
             Моя робота полягає в тому, щоб зробити вашу цифрову присутність функціональною, автоматизованою та зручною для користувачів. 
             Я створюю кастомних Telegram-ботів та веб-сайти, які додають професіоналізму вашому бізнесу та роблять робочі процеси безперебійними. 
             Моя мета — автоматизувати ваші рутинні завдання та втілити ідеї в життя завдяки чистому коду та сучасному дизайну. 
@@ -191,7 +236,7 @@
 
         <section class="service">
 
-          <h3 class="h3 service-title">Чим я займаюсь</h3>
+          <h3 class="h3 service-title" data-i18n="what_i_do">Чим я займаюсь</h3>
 
           <ul class="service-list">
 
@@ -202,9 +247,9 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Алгоритмічні рішення</h4>
+                <h4 class="h4 service-item-title" data-i18n="algo_title">Алгоритмічні рішення</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="algo_text">
                   Розробка точних торгових алгоритмів та інструментів аналізу даних з використанням API бірж. 
                   Спеціалізуюся на створенні кастомної логіки з тонкими налаштуваннями для роботи на ринку в реальному часі.
                </p>
@@ -219,9 +264,9 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Веб-розробка</h4>
+                <h4 class="h4 service-item-title" data-i18n="web_title">Веб-розробка</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="web_text">
                   Створення сучасних, адаптивних веб-сайтів з акцентом на швидкість, чисту архітектуру та ідеальний користувацький досвід. 
                   Я гарантую, що ваша цифрова присутність буде професійною та доступною по всьому світу.
                 </p>
@@ -236,9 +281,9 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Автоматизація в Telegram</h4>
+                <h4 class="h4 service-item-title" data-i18n="tg_title">Автоматизація в Telegram</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="tg_text">
                   Розробка складних, високопродуктивних ботів з підтримкою декількох мов та інтеграцією баз даних. 
                   Я створюю масштабовані системи, які обробляють взаємодію з користувачами та бізнес-логіку 24/7.
                 </p>
@@ -253,9 +298,9 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Бізнес-скрипти</h4>
+                <h4 class="h4 service-item-title" data-i18n="script_title">Бізнес-скрипти</h4>
 
-                <p class="service-item-text">
+                <p class="service-item-text" data-i18n="script_text">
                   Оптимізація робочих процесів за допомогою кастомних скриптів на Python, які автоматизують рутинні завдання та обробку даних. 
                   Я допомагаю бізнесу усунути ручні помилки та значно підвищити ефективність роботи.
                 </p>
@@ -270,7 +315,7 @@
 
         <section class="testimonials">
 
-          <h3 class="h3 testimonials-title">Відгуки</h3>
+          <h3 class="h3 testimonials-title" data-i18n="test_title">Відгуки</h3>
 
           <ul class="testimonials-list has-scrollbar">
 
@@ -284,7 +329,7 @@
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Daniel Valentine</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="t1_text">
                     Співпраця з Ярославом змінила правила гри. Бот G6, який він розробив, неймовірно стабільний і чудово справляється з волатильністю ринку. 
                     Все, від двомовної взаємодії до хмарного розгортання, було виконано ідеально. Якщо вам потрібна серйозна автоматизація, Ярослав — саме той, хто вам потрібен!
                   </p>
@@ -303,7 +348,7 @@
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Jessica miller</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="t2_text">
                      Ярослав виконав неймовірну роботу над сайтом для Lamay Nail and Spa. 
                      Він взяв наше бачення і перетворив його на елегантну, професійну платформу, яку просто обожнюють наші клієнти. 
                      Сайт швидкий, чудово виглядає на мобільних телефонах і значно спростив процес бронювання для всіх.
@@ -323,7 +368,7 @@
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Emily evans</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="t3_text">
                      Ярослав перевершив усі очікування з проєктом A1 Barber Studio. Він не просто створив сайт, він створив цифровий досвід, який ідеально відповідає естетиці нашого барбершопу. Автоматизація, яку він налаштував, економить нам години ручної роботи щотижня.
                   </p>
                 </div>
@@ -341,7 +386,7 @@
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Henry william</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
-                  <p>
+                  <p data-i18n="t4_text">
                      Ярослав — розробник найвищого рівня. Він створив платформу для Brooklyn Vancouver, і це саме те, що нам було потрібно: швидко, стильно і неймовірно надійно. Сайт працює бездоганно на всіх пристроях, а відгуки наших клієнтів просто чудові.
                   </p>
                 </div>
@@ -376,12 +421,10 @@
 
               <h4 class="h3 modal-title" data-modal-title>Daniel Valentine</h4>
 
-              <time datetime="2021-06-14">14 Червня 2021</time>
+              <time datetime="2021-06-14" data-i18n="t_date">14 Червня 2021</time>
 
               <div data-modal-text>
-                <p>
-                  Ярослав
-                </p>
+                <p>Ярослав</p>
               </div>
 
             </div>
@@ -393,7 +436,7 @@
 
         <section class="clients">
 
-          <h3 class="h3 clients-title">Клієнти</h3>
+          <h3 class="h3 clients-title" data-i18n="clients_title">Клієнти</h3>
 
           <ul class="clients-list has-scrollbar">
 
@@ -446,7 +489,7 @@
       <article class="resume" data-page="резюме">
 
         <header>
-          <h2 class="h2 article-title">Резюме</h2>
+          <h2 class="h2 article-title" data-i18n="res_title">Резюме</h2>
         </header>
 
         <section class="timeline">
@@ -456,18 +499,18 @@
               <ion-icon name="book-outline"></ion-icon>
             </div>
 
-            <h3 class="h3">Освіта</h3>
+            <h3 class="h3" data-i18n="edu_title">Освіта</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Коледж інновацій Торонто</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="edu1_name">Коледж інновацій Торонто</h4>
 
               <span>2020 — 2024</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu1_text">
                 Поглиблена розробка програмного забезпечення. Фокус на сучасних backend-архітектурах, розробці на Python та автоматизації бізнес-процесів. Здобув практичний досвід у створенні масштабованих веб-рішень та інтеграції складних API-систем.
               </p>
 
@@ -475,11 +518,11 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Школа виробництва та автоматизації SAIT</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="edu2_name">Школа виробництва та автоматизації SAIT</h4>
 
               <span>2022 — 2025</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="edu2_text">
                 Промислова автоматизація та робототехніка. Спеціалізація на системах управління, логічному програмуванні та оптимізації робочих процесів. Глибоке розуміння того, як поєднати програмну логіку з ефективною реальною автоматизацією.
               </p>
 
@@ -496,18 +539,18 @@
               <ion-icon name="book-outline"></ion-icon>
             </div>
 
-            <h3 class="h3">Досвід роботи</h3>
+            <h3 class="h3" data-i18n="exp_title">Досвід роботи</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Fiverr (Незалежний розробник)</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="exp1_name">Fiverr (Незалежний розробник)</h4>
 
-              <span>2021 — Дотепер</span>
+              <span data-i18n="exp1_time">2021 — Дотепер</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="exp1_text">
                 Виконав понад 50 кастомних проєктів з автоматизації для клієнтів з усього світу, спеціалізуючись на Telegram-ботах на Python та інструментах для веб-скрапінгу. Підтримую рейтинг 5 зірок, зосереджуючись на чистому коді, швидкому розгортанні та високопродуктивній бізнес-логіці.
               </p>
 
@@ -515,11 +558,11 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">North Loop Automation (Технологічний стартап у Торонто)</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="exp2_name">North Loop Automation (Технологічний стартап у Торонто)</h4>
 
               <span>2024 — 2026</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="exp2_text">
               Роль: Junior Backend Розробник. Розробка та оптимізація backend-систем для автоматизації бізнес-процесів. Створення кастомних API-інтеграцій та хмарне розгортання на Railway та AWS. Підвищив ефективність систем на 30% завдяки просунутим скриптам та автоматизованій обробці помилок.
               </p>
 
@@ -527,11 +570,11 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Maple Retail Solutions (E-commerce агентство)</h4>
+              <h4 class="h4 timeline-item-title" data-i18n="exp3_name">Maple Retail Solutions (E-commerce агентство)</h4>
 
               <span>2022 — 2024</span>
 
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="exp3_text">
               Роль: Спеціаліст з веб-розробки та автоматизації. Створення та підтримка високонавантажених веб-платформ для локальних роздрібних брендів. Розробка скриптів для автоматизованого управління запасами та інтеграція безпечних платіжних шлюзів, забезпечуючи безперебійну роботу для малого та середнього бізнесу.
               </p>
 
@@ -543,14 +586,14 @@
 
         <section class="skill">
 
-          <h3 class="h3 skills-title">Мої навички</h3>
+          <h3 class="h3 skills-title" data-i18n="skills_title">Мої навички</h3>
 
           <ul class="skills-list content-card">
 
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Python та Автоматизація</h5>
+                <h5 class="h5" data-i18n="sk1">Python та Автоматизація</h5>
                 <data value="95">95%</data>
               </div>
 
@@ -563,7 +606,7 @@
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Backend розробка</h5>
+                <h5 class="h5" data-i18n="sk2">Backend розробка</h5>
                 <data value="85">85%</data>
               </div>
 
@@ -576,7 +619,7 @@
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Управління базами даних</h5>
+                <h5 class="h5" data-i18n="sk3">Управління базами даних</h5>
                 <data value="75">75%</data>
               </div>
 
@@ -589,7 +632,7 @@
             <li class="skills-item">
 
               <div class="title-wrapper">
-                <h5 class="h5">Хмарне розгортання та Git</h5>
+                <h5 class="h5" data-i18n="sk4">Хмарне розгортання та Git</h5>
                 <data value="80">80%</data>
               </div>
 
@@ -612,7 +655,7 @@
       <article class="portfolio" data-page="портфоліо">
 
         <header>
-          <h2 class="h2 article-title">Портфоліо</h2>
+          <h2 class="h2 article-title" data-i18n="port_title">Портфоліо</h2>
         </header>
 
         <section class="projects">
@@ -620,19 +663,19 @@
           <ul class="filter-list">
 
             <li class="filter-item">
-              <button class="active" data-filter-btn>Всі</button>
+              <button class="active" data-filter-btn data-i18n="f_all">Всі</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Веб-розробка</button>
+              <button data-filter-btn data-i18n="f_web">Веб-розробка</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Автоматизація та Боти</button>
+              <button data-filter-btn data-i18n="f_bot">Автоматизація та Боти</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>E-commerce</button>
+              <button data-filter-btn data-i18n="f_ecom">E-commerce</button>
             </li>
 
           </ul>
@@ -641,7 +684,7 @@
 
             <button class="filter-select" data-select>
 
-              <div class="select-value" data-selecct-value>Оберіть категорію</div>
+              <div class="select-value" data-selecct-value data-i18n="f_select">Оберіть категорію</div>
 
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
@@ -652,19 +695,19 @@
             <ul class="select-list">
 
               <li class="select-item">
-                <button data-select-item>Всі</button>
+                <button data-select-item data-i18n="f_all">Всі</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Веб-розробка</button>
+                <button data-select-item data-i18n="f_web">Веб-розробка</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>Автоматизація та Боти</button>
+                <button data-select-item data-i18n="f_bot">Автоматизація та Боти</button>
               </li>
 
               <li class="select-item">
-                <button data-select-item>E-commerce</button>
+                <button data-select-item data-i18n="f_ecom">E-commerce</button>
               </li>
 
             </ul>
@@ -685,7 +728,7 @@
                 </figure>
 
                 <h3 class="project-title">G6 Trading Bot</h3>
-                <p class="project-category">Автоматизація та Боти</p>
+                <p class="project-category" data-i18n="f_bot">Автоматизація та Боти</p>
 
               </a>
             </li>
@@ -702,7 +745,7 @@
                 </figure>
 
                 <h3 class="project-title">Lamay Nail and Spa</h3>
-                <p class="project-category">Веб-розробка</p>
+                <p class="project-category" data-i18n="f_web">Веб-розробка</p>
 
               </a>
             </li>
@@ -719,7 +762,7 @@
                 </figure>
 
                 <h3 class="project-title">Brooklyn Vancouver</h3>
-                <p class="project-category">E-commerce</p>
+                <p class="project-category" data-i18n="f_ecom">E-commerce</p>
 
               </a>
             </li>
@@ -736,7 +779,7 @@
                 </figure>
 
                 <h3 class="project-title">A1 Barber Studio</h3>
-                <p class="project-category">Веб-розробка</p>
+                <p class="project-category" data-i18n="f_web">Веб-розробка</p>
 
               </a>
             </li>
@@ -762,7 +805,7 @@
       <article class="contact" data-page="контакти">
 
         <header>
-          <h2 class="h2 article-title">Контакти</h2>
+          <h2 class="h2 article-title" data-i18n="cont_title">Контакти</h2>
         </header>
 
         <section class="mapbox" data-mapbox>
@@ -775,23 +818,23 @@
 
         <section class="contact-form">
 
-          <h3 class="h3 form-title">Форма зворотного зв'язку</h3>
+          <h3 class="h3 form-title" data-i18n="form_title">Форма зворотного зв'язку</h3>
 
           <form class="form" id="telegram-form" data-form>
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Повне ім'я" required data-form-input>
+              <input type="text" name="fullname" class="form-input" placeholder="Повне ім'я" data-i18n="pl_name" required data-form-input>
 
-              <input type="email" name="email" class="form-input" placeholder="Електронна пошта" required data-form-input>
+              <input type="email" name="email" class="form-input" placeholder="Електронна пошта" data-i18n="pl_email" required data-form-input>
             </div>
             
-            <input type="text" name="telegram" class="form-input" placeholder="Telegram нікнейм (необов'язково)" style="margin-bottom: 25px;" data-form-input>
+            <input type="text" name="telegram" class="form-input" placeholder="Telegram нікнейм (необов'язково)" data-i18n="pl_tg" style="margin-bottom: 25px;" data-form-input>
 
-            <textarea name="message" class="form-input" placeholder="Ваше повідомлення" required data-form-input></textarea>
+            <textarea name="message" class="form-input" placeholder="Ваше повідомлення" data-i18n="pl_msg" required data-form-input></textarea>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
-              <span id="btn-text">Відправити повідомлення</span>
+              <span id="btn-text" data-i18n="btn_send">Відправити повідомлення</span>
             </button>
 
           </form>
@@ -800,8 +843,8 @@
             <div style="font-size: 60px; color: #ffdb70; margin-bottom: 15px;">
               <ion-icon name="checkmark-circle-outline"></ion-icon>
             </div>
-            <h3 style="color: white; font-size: 24px; font-weight: 500;">Повідомлення надіслано!</h3>
-            <p style="color: var(--light-gray); margin-top: 5px;">Дані збережені в CRM та відправлені в Telegram.</p>
+            <h3 style="color: white; font-size: 24px; font-weight: 500;" data-i18n="succ_title">Повідомлення надіслано!</h3>
+            <p style="color: var(--light-gray); margin-top: 5px;" data-i18n="succ_text">Дані збережені в CRM та відправлені в Telegram.</p>
           </div>
 
         </section>
@@ -825,7 +868,178 @@
 
   <script>
     // ==========================================
-    // 1. ВІДПРАВКА ФОРМИ ЧЕРЕЗ GOOGLE APPS SCRIPT
+    // СИСТЕМА ПЕРЕВОДА (MULTILANGUAGE SPA)
+    // ==========================================
+    const i18n = {
+      "ua": {
+        "page_title": "Персональне портфоліо Ярослава",
+        "role": "Веб-розробник",
+        "show_contacts": "Показати контакти",
+        "dob_label": "Дата народження",
+        "dob_val": "21 грудня 2006",
+        "loc_label": "Локація",
+        "loc_val": "Торонто, Онтаріо, Канада",
+        "nav_about": "Про мене",
+        "nav_resume": "Резюме",
+        "nav_portfolio": "Портфоліо",
+        "nav_contact": "Контакти",
+        "about_title": "Про мене",
+        "about_p1": "Я Backend-розробник та спеціаліст з автоматизації, що базується в Торонто, Канада. Спеціалізуюся на створенні надійної backend-архітектури, написанні скриптів на Python та розробці складних інструментів автоматизації.",
+        "about_p2": "Моя робота полягає в тому, щоб зробити вашу цифрову присутність функціональною, автоматизованою та зручною для користувачів. Я створюю кастомних Telegram-ботів та веб-сайти, які додають професіоналізму вашому бізнесу та роблять робочі процеси безперебійними. Моя мета — автоматизувати ваші рутинні завдання та втілити ідеї в життя завдяки чистому коду та сучасному дизайну. Фокусуюся на розробці висококласних рішень для автоматизації, які допомагають бізнесу рости та працювати ефективно 24/7.",
+        "what_i_do": "Чим я займаюсь",
+        "algo_title": "Алгоритмічні рішення",
+        "algo_text": "Розробка точних торгових алгоритмів та інструментів аналізу даних з використанням API бірж. Спеціалізуюся на створенні кастомної логіки з тонкими налаштуваннями для роботи на ринку в реальному часі.",
+        "web_title": "Веб-розробка",
+        "web_text": "Створення сучасних, адаптивних веб-сайтів з акцентом на швидкість, чисту архітектуру та ідеальний користувацький досвід. Я гарантую, що ваша цифрова присутність буде професійною та доступною по всьому світу.",
+        "tg_title": "Автоматизація в Telegram",
+        "tg_text": "Розробка складних, високопродуктивних ботів з підтримкою декількох мов та інтеграцією баз даних. Я створюю масштабовані системи, які обробляють взаємодію з користувачами та бізнес-логіку 24/7.",
+        "script_title": "Бізнес-скрипти",
+        "script_text": "Оптимізація робочих процесів за допомогою кастомних скриптів на Python, які автоматизують рутинні завдання та обробку даних. Я допомагаю бізнесу усунути ручні помилки та значно підвищити ефективність роботи.",
+        "test_title": "Відгуки",
+        "t1_text": "Співпраця з Ярославом змінила правила гри. Бот G6, який він розробив, неймовірно стабільний і чудово справляється з волатильністю ринку. Все, від двомовної взаємодії до хмарного розгортання, було виконано ідеально. Якщо вам потрібна серйозна автоматизація, Ярослав — саме той, хто вам потрібен!",
+        "t2_text": "Ярослав виконав неймовірну роботу над сайтом для Lamay Nail and Spa. Він взяв наше бачення і перетворив його на елегантну, професійну платформу, яку просто обожнюють наші клієнти. Сайт швидкий, чудово виглядає на мобільних телефонах і значно спростив процес бронювання для всіх.",
+        "t3_text": "Ярослав перевершив усі очікування з проєктом A1 Barber Studio. Він не просто створив сайт, він створив цифровий досвід, який ідеально відповідає естетиці нашого барбершопу. Автоматизація, яку він налаштував, економить нам години ручної роботи щотижня.",
+        "t4_text": "Ярослав — розробник найвищого рівня. Він створив платформу для Brooklyn Vancouver, і це саме те, що нам було потрібно: швидко, стильно і неймовірно надійно. Сайт працює бездоганно на всіх пристроях, а відгуки наших клієнтів просто чудові.",
+        "t_date": "14 Червня 2021",
+        "clients_title": "Клієнти",
+        "res_title": "Резюме",
+        "edu_title": "Освіта",
+        "edu1_name": "Коледж інновацій Торонто",
+        "edu1_text": "Поглиблена розробка програмного забезпечення. Фокус на сучасних backend-архітектурах, розробці на Python та автоматизації бізнес-процесів. Здобув практичний досвід у створенні масштабованих веб-рішень та інтеграції складних API-систем.",
+        "edu2_name": "Школа виробництва та автоматизації SAIT",
+        "edu2_text": "Промислова автоматизація та робототехніка. Спеціалізація на системах управління, логічному програмуванні та оптимізації робочих процесів. Глибоке розуміння того, як поєднати програмну логіку з ефективною реальною автоматизацією.",
+        "exp_title": "Досвід роботи",
+        "exp1_name": "Fiverr (Незалежний розробник)",
+        "exp1_time": "2021 — Дотепер",
+        "exp1_text": "Виконав понад 50 кастомних проєктів з автоматизації для клієнтів з усього світу, спеціалізуючись на Telegram-ботах на Python та інструментах для веб-скрапінгу. Підтримую рейтинг 5 зірок, зосереджуючись на чистому коді, швидкому розгортанні та високопродуктивній бізнес-логіці.",
+        "exp2_name": "North Loop Automation (Технологічний стартап у Торонто)",
+        "exp2_text": "Роль: Junior Backend Розробник. Розробка та оптимізація backend-систем для автоматизації бізнес-процесів. Створення кастомних API-інтеграцій та хмарне розгортання на Railway та AWS. Підвищив ефективність систем на 30% завдяки просунутим скриптам та автоматизованій обробці помилок.",
+        "exp3_name": "Maple Retail Solutions (E-commerce агентство)",
+        "exp3_text": "Роль: Спеціаліст з веб-розробки та автоматизації. Створення та підтримка високонавантажених веб-платформ для локальних роздрібних брендів. Розробка скриптів для автоматизованого управління запасами та інтеграція безпечних платіжних шлюзів, забезпечуючи безперебійну роботу для малого та середнього бізнесу.",
+        "skills_title": "Мої навички",
+        "sk1": "Python та Автоматизація",
+        "sk2": "Backend розробка",
+        "sk3": "Управління базами даних",
+        "sk4": "Хмарне розгортання та Git",
+        "port_title": "Портфоліо",
+        "f_all": "Всі",
+        "f_web": "Веб-розробка",
+        "f_bot": "Автоматизація та Боти",
+        "f_ecom": "E-commerce",
+        "f_select": "Оберіть категорію",
+        "cont_title": "Контакти",
+        "form_title": "Форма зворотного зв'язку",
+        "pl_name": "Повне ім'я",
+        "pl_email": "Електронна пошта",
+        "pl_tg": "Telegram нікнейм (необов'язково)",
+        "pl_msg": "Ваше повідомлення",
+        "btn_send": "Відправити повідомлення",
+        "btn_sending": "Відправка...",
+        "succ_title": "Повідомлення надіслано!",
+        "succ_text": "Дані збережені в CRM та відправлені в Telegram."
+      },
+      "ru": {
+        "page_title": "Персональное портфолио Ярослава",
+        "role": "Веб-разработчик",
+        "show_contacts": "Показать контакты",
+        "dob_label": "Дата рождения",
+        "dob_val": "21 декабря 2006",
+        "loc_label": "Локация",
+        "loc_val": "Торонто, Онтарио, Канада",
+        "nav_about": "Обо мне",
+        "nav_resume": "Резюме",
+        "nav_portfolio": "Портфолио",
+        "nav_contact": "Контакты",
+        "about_title": "Обо мне",
+        "about_p1": "Я Backend-разработчик и специалист по автоматизации, базирующийся в Торонто, Канада. Специализируюсь на создании надежной backend-архитектуры, написании скриптов на Python и разработке сложных инструментов автоматизации.",
+        "about_p2": "Моя работа заключается в том, чтобы сделать ваше цифровое присутствие функциональным, автоматизированным и удобным для пользователей. Я создаю кастомных Telegram-ботов и веб-сайты, которые добавляют профессионализма вашему бизнесу и делают рабочие процессы бесперебойными. Моя цель — автоматизировать ваши рутинные задачи и воплотить идеи в жизнь благодаря чистому коду и современному дизайну. Фокусируюсь на разработке высококлассных решений для автоматизации, которые помогают бизнесу расти и работать эффективно 24/7.",
+        "what_i_do": "Чем я занимаюсь",
+        "algo_title": "Алгоритмические решения",
+        "algo_text": "Разработка точных торговых алгоритмов и инструментов анализа данных с использованием API бирж. Специализируюсь на создании кастомной логики с тонкими настройками для работы на рынке в реальном времени.",
+        "web_title": "Веб-разработка",
+        "web_text": "Создание современных, адаптивных веб-сайтов с акцентом на скорость, чистую архитектуру и идеальный пользовательский опыт. Я гарантирую, что ваше цифровое присутствие будет профессиональным и доступным по всему миру.",
+        "tg_title": "Автоматизация в Telegram",
+        "tg_text": "Разработка сложных, высокопроизводительных ботов с поддержкой нескольких языков и интеграцией баз данных. Я создаю масштабируемые системы, которые обрабатывают взаимодействие с пользователями и бизнес-логику 24/7.",
+        "script_title": "Бизнес-скрипты",
+        "script_text": "Оптимизация рабочих процессов с помощью кастомных скриптов на Python, которые автоматизируют рутинные задачи и обработку данных. Я помогаю бизнесу устранить ручные ошибки и значительно повысить эффективность работы.",
+        "test_title": "Отзывы",
+        "t1_text": "Сотрудничество с Ярославом изменило правила игры. Бот G6, который он разработал, невероятно стабилен и отлично справляется с волатильностью рынка. Все, от двуязычного взаимодействия до облачного развертывания, было выполнено идеально. Если вам нужна серьезная автоматизация, Ярослав — именно тот, кто вам нужен!",
+        "t2_text": "Ярослав выполнил невероятную работу над сайтом для Lamay Nail and Spa. Он взял наше видение и превратил его в элегантную, профессиональную платформу, которую просто обожают наши клиенты. Сайт быстрый, отлично выглядит на мобильных телефонах и значительно упростил процесс бронирования для всех.",
+        "t3_text": "Ярослав превзошел все ожидания с проектом A1 Barber Studio. Он не просто создал сайт, он создал цифровой опыт, который идеально соответствует эстетике нашего барбершопа. Автоматизация, которую он настроил, экономит нам часы ручной работы еженедельно.",
+        "t4_text": "Ярослав — разработчик высочайшего уровня. Он создал платформу для Brooklyn Vancouver, и это именно то, что нам было нужно: быстро, стильно и невероятно надежно. Сайт работает безупречно на всех устройствах, а отзывы наших клиентов просто великолепны.",
+        "t_date": "14 Июня 2021",
+        "clients_title": "Клиенты",
+        "res_title": "Резюме",
+        "edu_title": "Образование",
+        "edu1_name": "Колледж инноваций Торонто",
+        "edu1_text": "Углубленная разработка программного обеспечения. Фокус на современных backend-архитектурах, разработке на Python и автоматизации бизнес-процессов. Получил практический опыт в создании масштабируемых веб-решений и интеграции сложных API-систем.",
+        "edu2_name": "Школа производства и автоматизации SAIT",
+        "edu2_text": "Промышленная автоматизация и робототехника. Специализация на системах управления, логическом программировании и оптимизации рабочих процессов. Глубокое понимание того, как соединить программную логику с эффективной реальной автоматизацией.",
+        "exp_title": "Опыт работы",
+        "exp1_name": "Fiverr (Независимый разработчик)",
+        "exp1_time": "2021 — Настоящее время",
+        "exp1_text": "Выполнил более 50 кастомных проектов по автоматизации для клиентов со всего мира, специализируясь на Telegram-ботах на Python и инструментах для веб-скрапинга. Поддерживаю рейтинг 5 звезд, сосредотачиваясь на чистом коде, быстром развертывании и высокопроизводительной бизнес-логике.",
+        "exp2_name": "North Loop Automation (Технологический стартап в Торонто)",
+        "exp2_text": "Роль: Junior Backend Разработчик. Разработка и оптимизация backend-систем для автоматизации бизнес-процессов. Создание кастомных API-интеграций и облачное развертывание на Railway и AWS. Повысил эффективность систем на 30% благодаря продвинутым скриптам и автоматизированной обработке ошибок.",
+        "exp3_name": "Maple Retail Solutions (E-commerce агентство)",
+        "exp3_text": "Роль: Специалист по веб-разработке и автоматизации. Создание и поддержка высоконагруженных веб-платформ для локальных розничных брендов. Разработка скриптов для автоматизированного управления запасами и интеграция безопасных платежных шлюзов, обеспечивая бесперебойную работу для малого и среднего бизнеса.",
+        "skills_title": "Мои навыки",
+        "sk1": "Python и Автоматизация",
+        "sk2": "Backend разработка",
+        "sk3": "Управление базами данных",
+        "sk4": "Облачное развертывание и Git",
+        "port_title": "Портфолио",
+        "f_all": "Все",
+        "f_web": "Веб-разработка",
+        "f_bot": "Автоматизация и Боты",
+        "f_ecom": "E-commerce",
+        "f_select": "Выберите категорию",
+        "cont_title": "Контакты",
+        "form_title": "Форма обратной связи",
+        "pl_name": "Полное имя",
+        "pl_email": "Электронная почта",
+        "pl_tg": "Telegram никнейм (необязательно)",
+        "pl_msg": "Ваше сообщение",
+        "btn_send": "Отправить сообщение",
+        "btn_sending": "Отправка...",
+        "succ_title": "Сообщение отправлено!",
+        "succ_text": "Данные сохранены в CRM и отправлены в Telegram."
+      }
+    };
+
+    // Текущий язык (берем из памяти или ставим UA по умолчанию)
+    let currentLang = localStorage.getItem('portfolio_lang') || 'ua';
+
+    function changeLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('portfolio_lang', lang);
+
+      // Меняем стили кнопок в шапке
+      document.getElementById('btn-ua').classList.toggle('active', lang === 'ua');
+      document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+
+      // Переводим Title вкладки браузера
+      document.title = i18n[lang]['page_title'];
+
+      // Проходимся по всем элементам с тегом data-i18n и переводим их
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          // Если это поле ввода, меняем placeholder, иначе обычный текст
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = i18n[lang][key];
+          } else {
+            el.innerText = i18n[lang][key];
+          }
+        }
+      });
+    }
+
+    // Запускаем перевод при первой загрузке страницы
+    changeLang(currentLang);
+
+    // ==========================================
+    // ВІДПРАВКА ФОРМИ ЧЕРЕЗ GOOGLE APPS SCRIPT
     // ==========================================
     const tgForm = document.getElementById('telegram-form');
     const successMsg = document.getElementById('success-message');
@@ -836,7 +1050,8 @@
     tgForm.addEventListener('submit', function(e) {
       e.preventDefault(); 
 
-      btnText.innerText = 'Відправка...';
+      // Берем статус кнопки "Отправка" из нашего словаря под нужный язык
+      btnText.innerText = i18n[currentLang]['btn_sending'];
 
       const params = new URLSearchParams(new FormData(tgForm));
 
@@ -846,19 +1061,18 @@
         body: params
       })
       .then(() => {
-        // Успішна відправка
         tgForm.style.display = 'none';
         successMsg.style.display = 'block';
         tgForm.reset();
       })
       .catch(err => {
         alert('Помилка відправки. Будь ласка, спробуйте ще раз.');
-        btnText.innerText = 'Відправити повідомлення';
+        btnText.innerText = i18n[currentLang]['btn_send'];
       });
     });
 
     // ==========================================
-    // 2. ВІДКРИТТЯ ФОТО ПОРТФОЛІО ПРЯМО НА САЙТІ
+    // ВІДКРИТТЯ ФОТО ПОРТФОЛІО ПРЯМО НА САЙТІ
     // ==========================================
     const portfolioLinks = document.querySelectorAll('.portfolio-lightbox-link');
     const portfolioModal = document.querySelector('[data-portfolio-modal]');
