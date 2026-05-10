@@ -1021,7 +1021,7 @@
       // Переводим Title вкладки браузера
       document.title = i18n[lang]['page_title'];
 
-      // Проходимся по всем элементам с тегом data-i18n и переводим их
+      // Проходимся по всем элементам с тегом data-i18n и переводим их видимый текст
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (i18n[lang][key]) {
@@ -1032,6 +1032,22 @@
             el.innerText = i18n[lang][key];
           }
         }
+      });
+
+      // ==========================================
+      // ИСПРАВЛЕНИЕ НАВИГАЦИИ И ПОРТФОЛИО
+      // ==========================================
+      
+      // 1. Синхронизируем скрытые атрибуты страниц с новым языком, чтобы работал script.js
+      document.querySelector('article.about').setAttribute('data-page', i18n[lang]['nav_about'].toLowerCase());
+      document.querySelector('article.resume').setAttribute('data-page', i18n[lang]['nav_resume'].toLowerCase());
+      document.querySelector('article.portfolio').setAttribute('data-page', i18n[lang]['nav_portfolio'].toLowerCase());
+      document.querySelector('article.contact').setAttribute('data-page', i18n[lang]['nav_contact'].toLowerCase());
+
+      // 2. Синхронизируем категории проектов в портфолио для корректной работы фильтров
+      document.querySelectorAll('.project-item').forEach(item => {
+        const categoryText = item.querySelector('.project-category').innerText.toLowerCase();
+        item.setAttribute('data-category', categoryText);
       });
     }
 
